@@ -1,0 +1,37 @@
+{
+  "name": "typescript30",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">= 8",
+    "npm": ">= 5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tricinel/frontwerk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tricinel/frontwerk/issues"
+  },
+  "author": "Bogdan Lazar",
+  "license": "MIT",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "check:watch": "npm run check -- --watch",
+    "prebuild": "rimraf dist",
+    "build": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps --copy-files",
+    "watch": "npm run build -- --watch",
+    "server": "serve"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "rimraf": "^2.6.2",
+    "serve": "^10.0.2",
+    "typescript": "^3.0.3"
+  }
+}
