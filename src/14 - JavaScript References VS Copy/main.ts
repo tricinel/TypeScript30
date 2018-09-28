@@ -1,4 +1,4 @@
-namespace JavaScriptReferencesVsCopy {
+(function() {
   // start with strings, numbers and booleans
   // let age = 100;
   // let age2 = age;
@@ -73,4 +73,4 @@ namespace JavaScriptReferencesVsCopy {
   console.log(wes);
   const dev: Person = Object.assign({}, wes);
   const dev2: Person = JSON.parse(JSON.stringify(wes));
-}
+})();

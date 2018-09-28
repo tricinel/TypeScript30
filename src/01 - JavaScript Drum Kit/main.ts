@@ -1,29 +1,31 @@
-function removeTransition(e: TransitionEvent) {
-  if (e.propertyName !== 'transform') {
-    return;
+(function() {
+  function removeTransition(e: TransitionEvent) {
+    if (e.propertyName !== 'transform') {
+      return;
+    }
+
+    const target = e.target as HTMLElement;
+    target.classList.remove('playing');
   }
 
-  const target = e.target as HTMLElement;
-  target.classList.remove('playing');
-}
+  function playSound(e: KeyboardEvent) {
+    const audio = document.querySelector(
+      `audio[data-key="${e.keyCode}"]`
+    ) as HTMLAudioElement;
+    const key = document.querySelector(
+      `div[data-key="${e.keyCode}"]`
+    ) as HTMLInputElement;
 
-function playSound(e: KeyboardEvent) {
-  const audio = document.querySelector(
-    `audio[data-key="${e.keyCode}"]`
-  ) as HTMLAudioElement;
-  const key = document.querySelector(
-    `div[data-key="${e.keyCode}"]`
-  ) as HTMLInputElement;
+    if (!audio) {
+      return;
+    }
 
-  if (!audio) {
-    return;
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
   }
 
-  key.classList.add('playing');
-  audio.currentTime = 0;
-  audio.play();
-}
-
-const keys = Array.from(document.querySelectorAll('.key'));
-keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-window.addEventListener('keydown', playSound);
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+})();
